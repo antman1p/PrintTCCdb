@@ -6,3 +6,9 @@ JXA script for Mythic that prints the TCC.db
     -  [Apfell Agent jsimport source code](https://github.com/MythicAgents/apfell/blob/master/Payload_Type/apfell/agent_code/jsimport.js)
 ### The TCC.db will print to the Mythic UI
 ![alt text](https://github.com/antman1p/PrintTCCdb/blob/main/mythicPrintTCCdb.png?raw=true)
+## TODO:
+- Currently only checks root TCC.db
+    - Add arguments for:
+        - Current User's TCC.db
+        - root TCC.db
+        - other specified user's TCC.db
