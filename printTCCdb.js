@@ -1,9 +1,21 @@
 ObjC.import('sqlite3');
-
-function print_tccdb() {
+function print_tccdb(context) {
   var err;
-  var filename = $('/Library/Application\ Support/com.apple.TCC/TCC.db').stringByStandardizingPath.js
+  var filename = ""
   var ppDb = Ref();
+
+  // Change filename var based on params
+  switch(context) {
+    case 'root':
+      filename = $('/Library/Application\ Support/com.apple.TCC/TCC.db').stringByStandardizingPath.js;
+      break;
+    case 'currUser':
+      filename = $('/Users/' + $.NSUserName().js + '/Library/Application\ Support/com.apple.TCC/TCC.db').stringByStandardizingPath.js;
+      break;
+    default:
+      filename = $('/Users/' + context + '/Library/Application\ Support/com.apple.TCC/TCC.db').stringByStandardizingPath.js;
+  }
+
   err = $.sqlite3_open(filename, ppDb)
 
   var db = ppDb[0]
@@ -15,7 +27,7 @@ function print_tccdb() {
   err = $.sqlite3_prepare(db, sql, -1, ppStmt, Ref())
   if(err != $.SQLITE_OK) throw new Error($.sqlite3_errmsg(db))
   pStmt = ppStmt[0]
-  var output = ""
+  var output = "**** TCC.db at " + filename + " ****\n"
   try {
     while ((err = $.sqlite3_step(pStmt)) == $.SQLITE_ROW) {
       output += $.sqlite3_column_text(pStmt, 0) + "  |  " + $.sqlite3_column_text(pStmt, 1) + "\n"
@@ -31,3 +43,7 @@ function print_tccdb() {
       if(err != $.SQLITE_OK) throw new Error($.sqlite3_errmsg(db))
     }
 }
+
+//print_tccdb('root')
+//print_tccdb('currUser')
+//print_tccdb('CarlosSpiceyWiener')
