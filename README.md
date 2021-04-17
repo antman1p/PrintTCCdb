@@ -1,5 +1,6 @@
 # PrintTCCdb
-JXA script for Mythic that prints the TCC.db
+JXA script for Mythic that prints the TCC.db\
+Blog Post: https://antman1p-30185.medium.com/who-has-full-disk-access-12a523723d30
 ## Usage:
 1. In Mythic, use `jsimport` and upload printTCCdb.js
     -  [Apfell Agent jsimport source code](https://github.com/MythicAgents/apfell/blob/master/Payload_Type/apfell/agent_code/jsimport.js)
