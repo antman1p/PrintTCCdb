@@ -30,7 +30,9 @@ function print_tccdb(context) {
   var output = "**** TCC.db at " + filename + " ****\n"
   try {
     while ((err = $.sqlite3_step(pStmt)) == $.SQLITE_ROW) {
-      output += $.sqlite3_column_text(pStmt, 0) + "  |  " + $.sqlite3_column_text(pStmt, 1) + "\n"
+      output += $.sqlite3_column_text(pStmt, 0) + "  |  " + $.sqlite3_column_text(pStmt, 1) +
+        "  |  " + $.sqlite3_column_text(pStmt, 2) + "  |  " + $.sqlite3_column_text(pStmt, 3) +
+        "  |  " + $.sqlite3_column_text(pStmt, 4) + "  |\n";
     }
     return output
   }
@@ -44,6 +46,6 @@ function print_tccdb(context) {
     }
 }
 
-//print_tccdb('root')
+// print_tccdb('root')
 //print_tccdb('currUser')
 //print_tccdb('CarlosSpiceyWiener')
